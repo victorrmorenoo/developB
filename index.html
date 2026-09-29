@@ -1,12 +1,1243 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turma b</title>
+
+    <title>Vingadores | Earth's Mightiest Heroes</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.92);
+            border-bottom: 2px solid #e62429;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #e62429;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e62429;
+        }
+
+        .menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1534809027769-b00d750a6bac?auto=format&fit=crop&w=2000&q=80");
+
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 100px);
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px #e62429;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #e62429;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #ddd;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e62429;
+            color: white;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff3b40;
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           GERAL
+        ========================= */
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #e62429;
+            margin: auto;
+        }
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        #sobre {
+            background: #101010;
+        }
+
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .sobre-texto p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .sobre-destaque {
+            border-left: 4px solid #e62429;
+            padding: 25px;
+            background: #181818;
+        }
+
+        .sobre-destaque h3 {
+            color: #e62429;
+            margin-bottom: 15px;
+            font-size: 25px;
+        }
+
+        .sobre-destaque p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           PERSONAGENS
+        ========================= */
+
+        #personagens {
+            background: #080808;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #151515;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #292929;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #e62429;
+            box-shadow: 0 10px 30px rgba(230, 36, 41, 0.25);
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
+        }
+
+        .card-content span {
+            color: #e62429;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .card-content p {
+            color: #aaa;
+            margin-top: 12px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* =========================
+           FILMES
+        ========================= */
+
+        #filmes {
+            background: #101010;
+        }
+
+        .filmes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .filme {
+            background: #181818;
+            padding: 30px 20px;
+            border-radius: 10px;
+            border-top: 4px solid #e62429;
+            transition: 0.3s;
+        }
+
+        .filme:hover {
+            transform: scale(1.03);
+        }
+
+        .filme .numero {
+            color: #e62429;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .filme h3 {
+            margin: 15px 0 10px;
+            font-size: 21px;
+        }
+
+        .filme p {
+            color: #aaa;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .ano {
+            display: inline-block;
+            margin-top: 15px;
+            color: #fff;
+            background: #e62429;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* =========================
+           MOMENTOS
+        ========================= */
+
+        #momentos {
+            background: #080808;
+        }
+
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: #e62429;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            background: #e62429;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -7px;
+        }
+
+        .timeline-box {
+            background: #151515;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .timeline-box h3 {
+            color: #e62429;
+            margin-bottom: 8px;
+        }
+
+        .timeline-box p {
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           GALERIA
+        ========================= */
+
+        #galeria {
+            background: #101010;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.03);
+            filter: brightness(1.2);
+        }
+
+        /* =========================
+           CURIOSIDADES
+        ========================= */
+
+        #curiosidades {
+            background: #080808;
+        }
+
+        .curiosidades {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .curiosidade {
+            background: #151515;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .curiosidade .icone {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .curiosidade h3 {
+            margin-bottom: 10px;
+        }
+
+        .curiosidade p {
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CONTATO
+        ========================= */
+
+        #contato {
+            background: #101010;
+        }
+
+        form {
+            max-width: 700px;
+            margin: auto;
+            background: #181818;
+            padding: 35px;
+            border-radius: 10px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .campo input,
+        .campo textarea {
+            width: 100%;
+            padding: 13px;
+            background: #0d0d0d;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .campo input:focus,
+        .campo textarea:focus {
+            border-color: #e62429;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        form button {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #050505;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #222;
+        }
+
+        footer h3 {
+            color: #e62429;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filmes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sobre-content {
+                grid-template-columns: 1fr;
+            }
+
+            .galeria {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #080808;
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+                gap: 20px;
+            }
+
+            nav ul.ativo {
+                display: flex;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .cards,
+            .filmes,
+            .galeria,
+            .curiosidades {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                left: 0;
+                text-align: left;
+                padding-left: 35px;
+                padding-right: 0;
+            }
+
+            .timeline-item::after,
+            .timeline-item:nth-child(even)::after {
+                left: 3px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Olá turma b</h1>
-    <h2>Como estão??</h2>
+
+    <!-- NAVBAR -->
+
+    <header>
+        <nav>
+
+            <div class="logo">
+                A<span>V</span>ENGERS
+            </div>
+
+            <div class="menu" onclick="abrirMenu()">
+                ☰
+            </div>
+
+            <ul id="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#personagens">Heróis</a></li>
+                <li><a href="#filmes">Filmes</a></li>
+                <li><a href="#momentos">Momentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>Os <span>Vingadores</span></h1>
+
+            <p>
+                Earth's Mightiest Heroes.
+                Uma equipe formada para proteger o mundo
+                contra as maiores ameaças.
+            </p>
+
+            <a href="#personagens" class="btn">
+                Conheça os heróis
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section id="sobre">
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Sobre os Vingadores</h2>
+                <span></span>
+            </div>
+
+            <div class="sobre-content">
+
+                <div class="sobre-texto">
+
+                    <p>
+                        Os Vingadores são uma das equipes mais conhecidas
+                        do universo Marvel. O grupo reúne diferentes
+                        heróis que deixam suas diferenças de lado para
+                        enfrentar ameaças que nenhum deles conseguiria
+                        combater sozinho.
+                    </p>
+
+                    <p>
+                        Ao longo de suas histórias, diferentes personagens
+                        fizeram parte da equipe, cada um trazendo suas
+                        próprias habilidades, experiências e personalidades.
+                    </p>
+
+                    <p>
+                        A união entre esses heróis é justamente uma das
+                        características mais marcantes da equipe.
+                    </p>
+
+                </div>
+
+                <div class="sobre-destaque">
+
+                    <h3>“Avengers Assemble!”</h3>
+
+                    <p>
+                        Quando uma ameaça aparece, os heróis se unem
+                        para proteger pessoas e defender o planeta.
+                        Juntos, eles representam força, coragem,
+                        sacrifício e trabalho em equipe.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERSONAGENS -->
+
+    <section id="personagens">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Principais Heróis</h2>
+
+                <span></span>
+
+            </div>
+
+            <div class="cards">
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&w=700&q=80">
+
+                    <div class="card-content">
+
+                        <h3>Homem de Ferro</h3>
+
+                        <span>TONY STARK</span>
+
+                        <p>
+                            Gênio, inventor e empresário.
+                            Utiliza sua tecnologia para combater
+                            ameaças como Homem de Ferro.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=700&q=80">
+
+                    <div class="card-content">
+
+                        <h3>Capitão América</h3>
+
+                        <span>STEVE ROGERS</span>
+
+                        <p>
+                            Um dos principais símbolos dos Vingadores,
+                            conhecido por sua liderança, coragem e
+                            determinação.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=700&q=80">
+
+                    <div class="card-content">
+
+                        <h3>Thor</h3>
+
+                        <span>DEUS DO TROVÃO</span>
+
+                        <p>
+                            Guerreiro asgardiano capaz de controlar
+                            poderes relacionados ao trovão e às
+                            tempestades.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=700&q=80">
+
+                    <div class="card-content">
+
+                        <h3>Hulk</h3>
+
+                        <span>BRUCE BANNER</span>
+
+                        <p>
+                            Cientista brilhante que possui uma força
+                            extraordinária quando assume sua forma
+                            de Hulk.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FILMES -->
+
+    <section id="filmes">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Filmes</h2>
+
+                <span></span>
+
+            </div>
+
+            <div class="filmes">
+
+                <div class="filme">
+
+                    <div class="numero">01</div>
+
+                    <h3>Os Vingadores</h3>
+
+                    <p>
+                        Os heróis se reúnem para impedir uma ameaça
+                        que coloca Nova York e o planeta em perigo.
+                    </p>
+
+                    <span class="ano">2012</span>
+
+                </div>
+
+
+                <div class="filme">
+
+                    <div class="numero">02</div>
+
+                    <h3>Era de Ultron</h3>
+
+                    <p>
+                        Uma inteligência artificial criada pelos
+                        próprios heróis acaba se tornando uma grande
+                        ameaça.
+                    </p>
+
+                    <span class="ano">2015</span>
+
+                </div>
+
+
+                <div class="filme">
+
+                    <div class="numero">03</div>
+
+                    <h3>Guerra Infinita</h3>
+
+                    <p>
+                        Os Vingadores enfrentam Thanos em uma batalha
+                        pelo destino de todo o universo.
+                    </p>
+
+                    <span class="ano">2018</span>
+
+                </div>
+
+
+                <div class="filme">
+
+                    <div class="numero">04</div>
+
+                    <h3>Ultimato</h3>
+
+                    <p>
+                        Os heróis restantes precisam encontrar uma
+                        maneira de reverter as consequências da batalha
+                        contra Thanos.
+                    </p>
+
+                    <span class="ano">2019</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MOMENTOS -->
+
+    <section id="momentos">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Momentos Marcantes</h2>
+
+                <span></span>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-box">
+
+                        <h3>A formação</h3>
+
+                        <p>
+                            Diferentes heróis são reunidos para
+                            enfrentar uma ameaça maior.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-box">
+
+                        <h3>Batalha de Nova York</h3>
+
+                        <p>
+                            Os Vingadores lutam juntos para proteger
+                            a cidade de uma invasão.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-box">
+
+                        <h3>Ultron</h3>
+
+                        <p>
+                            A equipe enfrenta uma inteligência
+                            artificial extremamente poderosa.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-box">
+
+                        <h3>Guerra Infinita</h3>
+
+                        <p>
+                            Os heróis enfrentam uma ameaça que
+                            ultrapassa os limites da Terra.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item">
+
+                    <div class="timeline-box">
+
+                        <h3>Ultimato</h3>
+
+                        <p>
+                            Os Vingadores fazem seu maior esforço
+                            para salvar aqueles que perderam.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GALERIA -->
+
+    <section id="galeria">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Galeria</h2>
+
+                <span></span>
+
+            </div>
+
+            <div class="galeria">
+
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80">
+
+                <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=900&q=80">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CURIOSIDADES -->
+
+    <section id="curiosidades">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Curiosidades</h2>
+
+                <span></span>
+
+            </div>
+
+            <div class="curiosidades">
+
+                <div class="curiosidade">
+
+                    <div class="icone">🛡️</div>
+
+                    <h3>Capitão América</h3>
+
+                    <p>
+                        Steve Rogers se tornou um dos principais
+                        símbolos de liderança da equipe.
+                    </p>
+
+                </div>
+
+
+                <div class="curiosidade">
+
+                    <div class="icone">⚡</div>
+
+                    <h3>Thor</h3>
+
+                    <p>
+                        Thor é um dos personagens mais poderosos
+                        associados à equipe.
+                    </p>
+
+                </div>
+
+
+                <div class="curiosidade">
+
+                    <div class="icone">🤖</div>
+
+                    <h3>Tecnologia</h3>
+
+                    <p>
+                        Tony Stark utiliza tecnologia avançada
+                        para criar diferentes versões de suas armaduras.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTATO -->
+
+    <section id="contato">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Contato</h2>
+
+                <span></span>
+
+            </div>
+
+            <form id="formulario">
+
+                <div class="campo">
+
+                    <label for="nome">Nome</label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="mensagem">Mensagem</label>
+
+                    <textarea
+                        id="mensagem"
+                        placeholder="Escreva sua mensagem..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button class="btn" type="submit">
+                    Enviar mensagem
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>AVENGERS</h3>
+
+        <p>
+            Site desenvolvido para fins educacionais e de estudo.
+        </p>
+
+        <p>
+            © 2026 - Universo dos Vingadores
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function abrirMenu() {
+
+            const menu = document.getElementById("menu");
+
+            menu.classList.toggle("ativo");
+
+        }
+
+
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+
+            alert(
+                "Mensagem enviada, " + nome + "!"
+            );
+
+            this.reset();
+
+        });
+
+
+        const links = document.querySelectorAll("nav a");
+
+        links.forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                document
+                    .getElementById("menu")
+                    .classList.remove("ativo");
+
+            });
+
+        });
+
+    </script>
+
 </body>
 </html>
