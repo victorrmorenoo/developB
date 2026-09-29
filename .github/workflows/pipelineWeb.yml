@@ -52,6 +52,7 @@ jobs:
         uses: actions/deploy-pages@v5 
         
   Docker:
+    needs: Validar
     runs-on: ubuntu-latest
     steps:
       - name: Docker Login 
