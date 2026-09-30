@@ -60,3 +60,9 @@ jobs:
         with:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_SENHA}}
+      - name: Publicar Imagem
+        uses: docker/build-push-action@v7.4.0
+        with:
+          file: dockerfile
+          push: true
+          tags: ngaloni/img_panda:1.0
