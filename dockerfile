@@ -1,7 +1,7 @@
 FROM nginx
 
-WORKDIR /usr/share/nginx/htm
+WORKDIR /usr/share/nginx/html
 
-COPY index.html
+COPY index.html .
 
-EXPOSE 8080
+EXPOSE 80
