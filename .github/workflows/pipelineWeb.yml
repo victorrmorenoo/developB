@@ -65,4 +65,4 @@ jobs:
         with:
           file: dockerfile
           push: true
-          tags: ngaloni/img_panda:1.0
+          tags: victoormorenoo/img_panda:1.0
